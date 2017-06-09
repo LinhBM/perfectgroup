@@ -73,7 +73,6 @@ class ProductsController < ApplicationController
   end
 
   def load_order
-    @order_item = current_order.order_items.new if user_signed_in? &&
-      current_order.present?
+    @order_item = current_order.order_items.new if user_signed_in?
   end
 end

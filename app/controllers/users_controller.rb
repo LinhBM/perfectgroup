@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if params[:search].present?
       @users = User.search(params[:search])
     else
-      @users = User.all.paginate page: params[:page]
+      @users = User.unless_admin.all.paginate page: params[:page]
     end
   end
 

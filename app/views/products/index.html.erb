@@ -10,52 +10,52 @@
     <div class="row">
       <% if @products.present? %>
         <% @products.each do |product| %>
-        <div class="col-sm-3 col-lg-3 col-md-3", style="padding-top: 5px;">
-          <div class="card" >
-            <%= rating_for product, "quality", star: 5 %>
-            <%= image_tag product.product_image.url(:thumb),
-              class: "card-img-top" %>
-            <div class="card-block">
-              <h5 class="card-title text-bold">
-                <%= link_to product.title, product_path(product) %>
-              </h5>
-              <div class="meta">
-                <%= link_to product.user.username, "#" %>
-              </div>
-              <h5 class="card-text">
-                <%= number_to_currency product.price %>
-              </h5>
-              <% if @order_item.present? %>
-                <%= form_for @order_item, url: order_items_path(@order_item),
-                  remote: true do |f| %>
-                  <%= f.hidden_field :quantity, value: 1,
-                    class: "form-control", min: 1 %>
-                  <%= f.hidden_field :product_id, value: product.id %>
-                  <% if can? :read, Product %>
-                    <%= f.submit t("add_to_cart"), class: "btn btn-danger" %>
+          <div class="col-sm-3 col-lg-3 col-md-3", style="padding-top: 5px;">
+            <div class="card" >
+              <%= rating_for product, "quality", star: 5 %>
+              <%= image_tag product.product_image.url(:thumb),
+                class: "card-img-top" %>
+              <div class="card-block">
+                <h5 class="card-title text-bold">
+                  <%= link_to product.title, product_path(product) %>
+                </h5>
+                <div class="meta">
+                  <%= link_to product.user.username, "#" %>
+                </div>
+                <h5 class="card-text">
+                  <%= number_to_currency product.price %>
+                </h5>
+                <% if @order_item.present? %>
+                  <%= form_for @order_item, url: order_items_path(@order_item),
+                    remote: true do |f| %>
+                    <%= f.hidden_field :quantity, value: 1,
+                      class: "form-control", min: 1 %>
+                    <%= f.hidden_field :product_id, value: product.id %>
+                    <% if can? :read, Product %>
+                      <%= f.submit t("add_to_cart"), class: "btn btn-danger" %>
+                    <% end %>
                   <% end %>
                 <% end %>
+              </div>
+              <% if user_signed_in? &&
+                current_user.username == product.user.username %>
+                <div class="card-footer">
+                  <%= link_to product_path(product) do %>
+                    <i class="ion ion-ios-information-outline"></i>
+                    <%= t "show" %>
+                  <% end %>
+                  <%= link_to edit_product_path(product) do %>
+                    <i class="ion ion-compose"></i> <%= t "edit" %>
+                  <% end %>
+                  <%= link_to product_path(product), method: :delete,
+                    data: {confirm: t("are_you_sure")} do %>
+                    <i class="ion ion-ios-trash-outline"></i>
+                    <%= t "delete" %>
+                  <% end %>
+                </div>
               <% end %>
             </div>
-            <% if user_signed_in? &&
-              current_user.username == product.user.username %>
-              <div class="card-footer">
-                <%= link_to product_path(product) do %>
-                  <i class="ion ion-ios-information-outline"></i>
-                  <%= t "show" %>
-                <% end %>
-                <%= link_to edit_product_path(product) do %>
-                  <i class="ion ion-compose"></i> <%= t "edit" %>
-                <% end %>
-                <%= link_to product_path(product), method: :delete,
-                  data: {confirm: t("are_you_sure")} do %>
-                  <i class="ion ion-ios-trash-outline"></i>
-                  <%= t "delete" %>
-                <% end %>
-              </div>
-            <% end %>
           </div>
-        </div>
         <% end %>
       <% end %>
     </div>

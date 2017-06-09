@@ -6,10 +6,12 @@ class ApplicationController < ActionController::Base
 
   def current_order
     if session[:order_id].present?
-      Order.find_by id: session[:order_id]
+      Order.find session[:order_id]
     else
-      delele_session unless @order_status = OrderStatus.first
-      current_user.orders.create @order_status_id if user_signed_in?
+      order = current_user.orders.create order_status_id: 1
+      session[:order_id] = order.id
+      byebug
+      order
     end
   end
 
@@ -31,5 +33,9 @@ class ApplicationController < ActionController::Base
 
   def delele_session
     session[:order_id] = nil
+  end
+
+  def find_sale
+    @user = User.find_by id: params[:id]
   end
 end

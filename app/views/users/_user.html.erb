@@ -1,8 +1,8 @@
 <li>
-  <% if user.image.present? %>
+  <% if user.image.url(:small).present? %>
     <%= link_to image_tag(user.image.url(:small)), user.image.url %>
   <% else %>
-    <% image_tag "default.jpg" %>
+    <% image_tag user.image.url %>
   <% end %>
   <a class="tab" />
   <%= link_to user.username, user %>

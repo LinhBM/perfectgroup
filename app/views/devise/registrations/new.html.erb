@@ -13,6 +13,7 @@
       autocomplete: "off" %><br/>
     <%= f.password_field :password_confirmation, size: 70,
       placeholder: t("fnpass"), autocomplete: "off" %><br/>
+    <%= f.file_field :image %>
     <%= f.submit t(".new") %><br/>
     <%= render "devise/shared/links" %>
   </div>
