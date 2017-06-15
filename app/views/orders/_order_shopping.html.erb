@@ -1,15 +1,9 @@
-<!-- <%# if !order_item.nil? && order_item.errors.any? %>
-  <div class="alert alert-danger">
-    <ul>
-    <%# order_item.errors.full_messages.each do |msg| %>
-      <li><%#= msg %></li>
-    <%# end %>
-    </ul>
-  </div>
-<%# end %> -->
-<p><%= link_to t("continue_shopping"), root_path,
-      class: "btn btn-danger btn-lg" %></p>
-<% @order_items.each do |order_item| %>
-  <%= render "orders/order_row", product: order_item.product,
+<%= link_to t("continue_shopping"), root_path,
+  class: "btn btn-default" %>
+
+<%= link_to t("checkout"), checkout_path, class: "btn btn-info" %>
+
+<% order_items.each do |order_item| %>
+  <%= render "orders/order_row", product: order_item.product, 
     order_item: order_item, show_total: true %>
 <% end %>

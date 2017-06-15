@@ -1,21 +1,23 @@
 <div class="main">
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= link_to t("create"), new_admin_category_path, class: "btn btn-info" %>
-    <br>
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th><%= t "stt" %></th>
-          <th><%= t "name" %></th>
-          <th><%= t "created_at" %></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render @categories %>
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="card padding-md">
+        <%= link_to t("create"), new_admin_category_path, class: "btn btn-info" %>
+        <br>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th><%= t "stt" %></th>
+              <th><%= t "name" %></th>
+              <th><%= t "created_at" %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @categories %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
-</div>
+</card>

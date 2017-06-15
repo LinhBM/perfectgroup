@@ -11,8 +11,8 @@
             <h3><%= @product.title %></h3>
             <h4><%= number_to_currency @product.price %></h4>
             <h5><%= @product.description %></h5>
-            <% if @order_item.present? %>
-              <%= form_for @order_item, url: order_items_path(@order_item),
+            <% if @supports.order_item.present? %>
+              <%= form_for @supports.order_item, url: order_items_path(@supports.order_item),
                 remote: true do |f| %>
                 <%= f.hidden_field :quantity, value: 1,
                 class: "form-control", min: 1 %>
@@ -45,7 +45,7 @@
             <div class="tab-content">
               <div id="comment" class="tab-pane fade in active">
                 <br>
-                <%= form_for [@product, @comment], remote: true do |f| %>
+                <%= form_for [@product, @supports.comment], remote: true do |f| %>
                   <div class="form-group">
                     <%= f.text_area :content, class: "form-control" %>
                   </div>
@@ -61,21 +61,6 @@
                 </div>
               </div>
               <div id="reviewers" class="tab-pane fade">
-                <ul class="list-unstyled">
-                <% @raters.each do |rater| %>
-                <li class="clearfix">
-                  <br>
-                  <div class="pull-left">
-                    <%= image_tag rater.image.url(:small),
-                      class: "img-thumbnail" %>
-                  </div>
-                  <h4 class="padding-left-md"><%= rater.username %></h4>
-                  <div class="pull-right">
-                    <%= rating_for @product, "quality", disable_after_rate: false %>
-                  </div>
-                </li>
-                <% end %>
-                </ul>
               </div>
             </div>
           </div>

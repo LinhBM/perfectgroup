@@ -17,3 +17,4 @@
 //= require bootstrap
 //= require_jquery.raty
 //= require_ratyrate
+//= require jasny-bootstrap.min

@@ -1,10 +1,5 @@
 <tr>
-  <% if user.image.url(:small).present? %>
-    <td><%= image_tag user.image.url(:small) %></td>
-  <% else %>
-    <td><% image_tag user.image.url, widht: 80, height: 80 %></td>
-  <% end %>
-
+  <td><%= image_tag user.image.url(:small), size: "80x80" %></td>
   <td><%= link_to user.username, user_path(user) %></td>
   <td><%= user.email %></td>
   <td><%= rating_for user, "quality", star: 5 %></td>
@@ -13,10 +8,11 @@
     <td class="half-width">
       <%= form_for(user) do |f| %>
         <div class="input-group">
-        <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]},{prompt: "Select role"}, {class: "form-control"}) %>
-        <td><span class="input-group-btn">
-        <%= f.submit "Change", class: "btn btn-info" %>
-        </span></td>
+          <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]},
+            {prompt: "Select role"}, {class: "form-control"}) %>
+          <span class="input-group-btn">
+            <%= f.submit "Change", class: "btn btn-info" %>
+          </span>
         </div>
       <% end %>
     </td>

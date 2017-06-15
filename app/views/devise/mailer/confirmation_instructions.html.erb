@@ -1,4 +1,4 @@
 <p><%= t ".title" %><%= @email %>!</p>
 <p><%= raw t ".content" %></p>
 <p><%= link_to t(".linkto"), confirmation_url(@resource,
-  confirmation_token: @token) %></p>
+  confirmation_token: @token), class: "btn btn-danger" %></p>

@@ -27,8 +27,8 @@
                   <h4 class="card-text text-bold text-danger pull-left">
                     <%= number_to_currency product.price %>
                   </h4>
-                  <% if @order_item.present? %>
-                    <%= form_for @order_item, url: order_items_path(@order_item),
+                  <% if @supports.order_item.present? %>
+                    <%= form_for @supports.order_item, url: order_items_path(@supports.order_item),
                       remote: true do |f| %>
                       <%= f.hidden_field :quantity, value: 1,
                         class: "form-control", min: 1 %>
@@ -43,15 +43,18 @@
               <% if user_signed_in? &&
                 current_user.username == product.user.username %>
                 <div class="card-footer">
-                  <%= link_to product_path(product) do %>
-                    <i class="ion ion-ios-information-outline i-2x text-danger"></i>
+                  <%= link_to product_path(product),
+                    class: "btn btn-sm btn-default" do %>
+                    <i class="ion ion-ios-information i-2x text-danger"></i>
                   <% end %>
-                  <%= link_to edit_product_path(product) do %>
+                  <%= link_to edit_product_path(product),
+                    class: "btn btn-sm btn-default" do %>
                     <i class="ion ion-compose i-2x text-danger"></i>
                   <% end %>
                   <%= link_to product_path(product), method: :delete,
+                    class: "btn btn-sm btn-default",
                     data: {confirm: t("are_you_sure")} do %>
-                    <i class="ion ion-ios-trash-outline i-2x text-danger"></i>
+                    <i class="ion ion-ios-trash i-2x text-danger"></i>
                   <% end %>
                 </div>
               <% end %>

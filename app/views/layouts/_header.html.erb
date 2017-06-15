@@ -4,12 +4,15 @@
 
     <nav>
       <ul class="nav navbar-nav">
-        <%= form_tag users_path, method: :get, class: "navbar-form margin-left-md", role: "search" do %>
+        <%= form_for :search, url: search_path, method: :get,
+          html: {class: "navbar-form margin-left-md"},
+          role: "search" do |f| %>
           <div class="input-group">
-            <%= text_field_tag :search, params[:search], class: "form-control",
-            placeholder: "Search...", id: "search", autocomplete: "off" %>
+            <%= f.text_field :keyword, class: "form-control",
+              placeholder: "Search...",
+              id: "search", autocomplete: "off" %>
             <span class="input-group-btn">
-              <%= submit_tag "Search", class: "btn btn-default" %>
+              <%= f.submit "Search", class: "btn btn-default" %>
             </span>
           </div>
         <% end %>

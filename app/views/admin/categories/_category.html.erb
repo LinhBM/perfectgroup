@@ -3,8 +3,10 @@
   <td><%= category.name %></td>
   <td><%= Time.at(category.created_at).to_formatted_s(:long) %></td>
   <td>
-    <%= link_to t("edit"), edit_admin_category_path(category) %>
+    <%= link_to t("edit"), edit_admin_category_path(category),
+      class: "btn btn-info" %>
     <%= link_to t("delete"), admin_category_path(category),
+      class: "btn btn-warning",
       method: :delete, data: {confirm: t("are_you_sure")} %>
   </td>
 </tr>

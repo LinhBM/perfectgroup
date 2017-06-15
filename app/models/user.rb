@@ -1,9 +1,8 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :payments, dependent: :destroy
   has_many :feedbacks, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :likeships, dependent: :destroy
@@ -30,16 +29,17 @@ class User < ApplicationRecord
     content_type: {content_type: /\Aimage/},
     size: {in: 0..10.megabytes}
 
-  scope :only_sale_man, (->_user{where role: 1})
-  scope :unless_admin, (->_user{where("role not in (0)")})
+  scope :only_sale_man, (->{where role: 1})
+  scope :unless_admin, (->{where "username not in ('admin')"})
 
-  searchkick text_start: :username
+  searchkick text_start: [:username]
 
   ratyrate_rateable "quality"
 
   ratyrate_rater
 
-  enum role: [:admin, :sale_man, :buy_man, :locked]
+  enum role: [:admin, :sale, :buy, :bye]
+
   after_initialize :set_default_role, if: :new_record?
 
   def set_default_role
@@ -72,5 +72,21 @@ class User < ApplicationRecord
 
   def liking? comment_id
     likeships.find_by comment_product_id: comment_id
+  end
+
+  def admin?
+    role == "admin"
+  end
+
+  def sale?
+    role == "sale"
+  end
+
+  def buy?
+    role == "buy"
+  end
+
+  def bye?
+    role == "bye"
   end
 end

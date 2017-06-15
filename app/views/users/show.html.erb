@@ -1,18 +1,20 @@
 <% provide :title, @user.username %>
-<div class="row">
-  <aside class="col-md-4">
-    <section>
-      <h1>
-        <%= @user.username %>
-      </h1>
-    </section>
-    <section class="stats">
-      <%= render "shared/stats", user: @user %>
-    </section>
-  </aside>
-  <div class="col-md-8">
-    <% unless @user.current_user? current_user %>
-      <%= render "follow_form", following: @following, user: @user %>
-    <% end %>
+<div class="main">
+  <div class="card padding-md">
+    <div class="row">
+      <aside class="col-md-4">
+        <h1>
+          <%= @user.username %>
+        </h1>
+        <div class="stats">
+          <%= render "shared/stats", user: @user %>
+        </div>
+      </aside>
+      <div class="col-md-8">
+        <% unless @user.current_user? current_user %>
+          <%= render "follow_form", following: @following, user: @user %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+.env
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -22,7 +23,7 @@
 /config/database.yml
 /config/secrets.yml
 /.framgia-ci-reports/*
-/public/*
+/public/system/*
 /db/seeds.rb
 /.framgia-ci-result.temp.yml
 /app/assets/images/*

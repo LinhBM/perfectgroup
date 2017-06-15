@@ -32,14 +32,20 @@ RemoveUnusedMethodsInControllersCheck: { except_methods: [
   ProductsController#show,
   ProductsController#edit
 ]}
-RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }
+RemoveUnusedMethodsInHelpersCheck: { except_methods: [
+    'ProductsHelper#load_rater'
+] }
 RemoveUnusedMethodsInModelsCheck: {
   except_methods: [
     'User#follow',
     'User#unfollow',
     'User#authenticated?',
     'OrderItem#total_price',
-    'OrderItem#increment_product_quantity'
+    'OrderItem#increment_product_quantity',
+    'User#only_sale_man',
+    'User#unless_admin',
+    'Product#data',
+    'Rate#get_product_rater'
   ],
   ignored_files: []
 }

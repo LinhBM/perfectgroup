@@ -5,8 +5,8 @@ $blue: #00afff;
 $blue-gray-d4: #d4d4d5;
 $color-card-footer: rgba(0, 0, 0, .4);
 $color-border-card-footer: rgba(0, 0, 0, .05);
-$color-card-box-shadow: rgba(0,0,0,.1);
-$color-card-box-shadow-hover: rgba(168,182,191,.5);
+$color-card-box-shadow: rgba(0, 0, 0, .1);
+$color-card-box-shadow-hover: rgba(168, 182, 191, .5);
 $color-card-text: rgba(0, 0, 0, .68);
 $color-meta: rgba(0, 0, 0, .4);
 $color-meta-a: rgba(0, 0, 0, .4);
@@ -93,7 +93,7 @@ footer {
 
 .main {
   margin-top: 50px;
-  padding-bottom: 500px;
+  padding-bottom: 450px;
 }
 
 .meta {
@@ -273,7 +273,7 @@ $text-danger-color: #ff0342;
   width: 24px;
 }
 
-img.raty-cancel {
+.raty-cancel {
   display: none;
 }
 
@@ -294,7 +294,7 @@ img.raty-cancel {
 }
 
 .margin-right-md {
-  margin-right: 5m !important;
+  margin-right: 5em !important;
 }
 
 .margin-top-md {

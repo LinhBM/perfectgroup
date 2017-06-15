@@ -13,7 +13,8 @@
 
   <div class="form-group">
     <%= f.label :description %>
-    <%= f.text_field :description, class: "form-control" %>
+    <%= f.text_area :description, class: "form-control",
+      size: "80x6" %>
   </div>
 
   <div class="form-group">
@@ -24,9 +25,26 @@
   </div>
 
   <div class="form-group">
-    <%= image_tag product.product_image.url(:thumb), class: "img-thumbnail" %>
-    <%= f.label :product_image %>
-    <%= f.file_field :product_image %>
+    <div class="fileinput fileinput-new"
+      data-provides="fileinput">
+      <div class="fileinput-new thumbnail"
+        style="width: 200px; height: 200px;">
+        <%= image_tag product.product_image.url,
+          class: "img-thumbnail" %>
+      </div>
+      <div class="fileinput-preview fileinput-exists thumbnail"
+        style="max-width: 200px; max-height: 200px;"></div>
+      <div>
+        <span class="btn btn-default btn-file">
+          <span class="fileinput-new"><%= t "select_image" %></span>
+          <span class="fileinput-exists"><%= t "change" %></span>
+          <%= f.file_field :product_image %>
+        </span>
+        <%= link_to t("remove"), "#",
+          class: "btn btn-default fileinput-exists",
+          data: {dismiss: "fileinput"} %>
+      </div>
+    </div>
   </div>
 
   <div class="form-group">

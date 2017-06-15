@@ -1,0 +1,39 @@
+<div class="main">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="card padding-md">
+        <h3 class="text-center"><%= t "your_bill" %></h3>
+        <br>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th><%= t "product" %></th>
+              <th><%= t "quantity" %></th>
+              <th><%= t "subtotal" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order_items.each do |oi| %>
+            <tr>
+              <td><%= oi.product.title %></td>
+              <td><%= oi.quantity %></td>
+              <td class="text-danger">
+                <%= number_to_currency oi.total_price %>
+              </td>
+            </tr>
+            <% end %>
+            <tr>
+              <td colspan="2"><%= t "total" %></td>
+              <td class="text-danger">
+                <%= number_to_currency current_order.subtotal %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <% reset_sessions %>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

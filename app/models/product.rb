@@ -15,10 +15,4 @@ class Product < ApplicationRecord
     content_type: /\Aimage\/.*\z/
 
   searchkick text_start: [:title]
-
-  def data
-    {
-      title: title
-    }
-  end
 end

@@ -3,11 +3,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :destroy, :update]
 
   def index
-    if params[:search].present?
-      @users = User.search(params[:search])
-    else
-      @users = User.unless_admin.all.paginate page: params[:page]
-    end
+    @users = User.unless_admin.all.paginate page: params[:page]
   end
 
   def show
@@ -22,10 +18,11 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(secure_params)
-      redirect_to users_path, :notice => "User updated."
+      flash[:success] = t "user_updated"
     else
-      redirect_to users_path, :alert => "Unable to update user."
+      flash[:error] = t "unable_update_user"
     end
+    redirect_to users_path
   end
 
   def destroy

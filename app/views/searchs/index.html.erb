@@ -1,0 +1,46 @@
+<div class="main">
+  <div class="row">
+    <div class="col-md-6">
+      <h3><%= t "user" %></h3>
+      <ul class="list-unstyled">
+      <% @users.each do |user| %>
+        <li>
+          <div class="card padding-md">
+            <div class="col-sm-3">
+              <%= image_tag user.image.url(:small) %>
+            </div>
+            <div class="col-sm-5">
+              <%= link_to user.username, user_path(user) %>
+              <br>
+              <%= user.email %>
+            </div>
+            <div class="col-sm-4">
+              <%= rating_for user, "quality" %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h3><%= t "product" %></h3>
+      <ul class="list-unstyled">
+        <% @products.each do |product| %>
+          <li>
+            <div class="card padding-md">
+              <div class="col-sm-3">
+                <%= image_tag product.product_image.url, size: "100x100" %>
+              </div>
+              <div class="col-sm-5">
+                <%= link_to product.title, product_path(product) %>
+              </div>
+              <div class="col-sm-4">
+                <%= rating_for product, "quality" %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

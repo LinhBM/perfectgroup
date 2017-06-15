@@ -9,35 +9,44 @@
   <%= devise_error_messages! %>
 
   <div class="form-group">
+    <%= f.label :email %>
     <%= f.email_field :email, placeholder: t("femail"),
       class: "form-control", autofocus: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div><%= t ".content13" %><%= resource.unconfirmed_email %></div>
+    <div>
+      <%= t ".content13" %><%= resource.unconfirmed_email %>
+    </div>
   <% end %>
 
   <div class="form-group">
+    <%= f.label :password %>
     <%= f.password_field :password, placeholder: t("fpass"),
       class: "form-control", autocomplete: "off" %>
     <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %><%= t ".content22" %></em>
+      <br>
+      <em>
+        <%= @minimum_password_length %><%= t ".content22" %>
+      </em>
     <% end %>
   </div>
 
   <div class="form-group">
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, placeholder: t("fpass"),
       class: "form-control", autocomplete: "off" %>
   </div>
 
   <div class="form-group">
+    <%= f.label :current_password %>
     <%= f.password_field :current_password,
       class: "form-control", placeholder: t("fnpass"), autocomplete: "off" %>
   </div>
 
   <div class="form-group">
-    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+    <%= f.label :image %>
+    <%= f.file_field :image, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -45,12 +54,7 @@
   </div>
 <% end %>
 
-<p><%= t ".content44" %></p>
-
-<p><%= t ".content46" %><%= button_to t(".cancel"),
-  registration_path(resource_name),
-  data: {confirm: t(".confirm")}, method: :delete %></p>
-<%= link_to t(".linkto"), :back %>
+<%= link_to t(".linkto"), root_path, class: "btn btn-warning" %>
 </div>
 </div>
 <div class="col-md-3"></div>
